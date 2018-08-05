@@ -40,6 +40,7 @@ typedef struct {
 #define TOPIC_UPDATE            "/"PRODUCT_KEY"/"DEVICE_NAME"/update"
 #define TOPIC_ERROR             "/"PRODUCT_KEY"/"DEVICE_NAME"/update/error"
 #define TOPIC_GET               "/"PRODUCT_KEY"/"DEVICE_NAME"/get"
+#define TOPIC_M2M               "/"PRODUCT_KEY"/"DEVICE_NAME"/m2m"
 
 #define MSG_LEN_MAX             (2048)
 
@@ -105,27 +106,28 @@ static void mqtt_work(void *parms)
 
     if (is_subscribed == 0) {
         /* Subscribe the specific topic */
-        rc = mqtt_subscribe(TOPIC_GET, mqtt_sub_callback, NULL);
+        rc = mqtt_subscribe(TOPIC_M2M, mqtt_sub_callback, NULL);
         if (rc < 0) {
             // IOT_MQTT_Destroy(&pclient);
             LOG("IOT_MQTT_Subscribe() failed, rc = %d", rc);
         }
+        LOG("IOT_MQTT_Subscribe() success, rc = %d", rc);
         is_subscribed = 1;
         aos_schedule_call(ota_init, NULL);
     }
 #ifndef MQTT_PRESS_TEST
     else {
         /* Generate topic message */
-        int msg_len = snprintf(msg_pub, sizeof(msg_pub), "{\"attr_name\":\"temperature\", \"attr_value\":\"%d\"}", cnt);
-        if (msg_len < 0) {
-            LOG("Error occur! Exit program");
-        }
-        rc = mqtt_publish(TOPIC_UPDATE, IOTX_MQTT_QOS1, msg_pub, msg_len);
-        if (rc < 0) {
-            LOG("error occur when publish");
-        }
-
-        LOG("packet-id=%u, publish topic msg=%s", (uint32_t)rc, msg_pub);
+   //     int msg_len = snprintf(msg_pub, sizeof(msg_pub), "{\"attr_name\":\"temperature\", \"attr_value\":\"%d\"}", cnt);
+     //   if (msg_len < 0) {
+        //    LOG("Error occur! Exit program");
+     //   }
+      //  rc = mqtt_publish(TOPIC_UPDATE, IOTX_MQTT_QOS1, msg_pub, msg_len);
+       // if (rc < 0) {
+       //     LOG("error occur when publish");
+       // }
+        LOG("system is running ... %d\n", cnt);
+        //LOG("packet-id=%u, publish topic msg=%s", (uint32_t)rc, msg_pub);
     }
     cnt++;
     if (cnt < 200) {
