@@ -31,8 +31,8 @@
       "command": "aos",
       "args": [
         "monitor",
-        "",
-        ""
+        "COM3",
+        "115200"
       ],
       "presentation": {
         "panel": "dedicated"

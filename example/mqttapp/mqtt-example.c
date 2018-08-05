@@ -117,17 +117,9 @@ static void mqtt_work(void *parms)
     }
 #ifndef MQTT_PRESS_TEST
     else {
-        /* Generate topic message */
-   //     int msg_len = snprintf(msg_pub, sizeof(msg_pub), "{\"attr_name\":\"temperature\", \"attr_value\":\"%d\"}", cnt);
-     //   if (msg_len < 0) {
-        //    LOG("Error occur! Exit program");
-     //   }
-      //  rc = mqtt_publish(TOPIC_UPDATE, IOTX_MQTT_QOS1, msg_pub, msg_len);
-       // if (rc < 0) {
-       //     LOG("error occur when publish");
-       // }
-        LOG("system is running ... %d\n", cnt);
-        //LOG("packet-id=%u, publish topic msg=%s", (uint32_t)rc, msg_pub);
+
+            LOG("system is running ... %d\n", cnt);
+
     }
     cnt++;
     if (cnt < 200) {

@@ -20,5 +20,7 @@
     "aliosStudio.build.multiBinTarget": "app",
     "aliosStudio.flashAllBin": false,
     "aliosStudio.isAosSource": true,
-    "aliosStudio.sdkPath": "${workspaceRoot}"
+    "aliosStudio.sdkPath": "${workspaceRoot}",
+    "aliosStudio.comPort": "COM3",
+    "aliosStudio.hardware.baudrate": 115200
 }
